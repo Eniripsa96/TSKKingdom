@@ -1,0 +1,44 @@
+name: TSKKingdom
+main: com.tsk.sucy.TSKKingdom
+version: 0.1
+commands:
+    claim:
+        description: used to claim land for a town
+        usage: /claim <town|expand> <amount>
+        permission: TSKKingdom.claim
+        permission-message: You lack the privileges to use that!
+    kingdom:
+        description: used to join a kingdom
+        usage: /kingdom join <kingdomName>
+        permission: TSKKingdom.kingdom
+        permission-message: You lack the privileges to use that!
+    plot:
+        description: used to buy or sell plots
+        usage: /plot <buy|sell>
+        permission: TSKKingdom.plot
+        permission-message: You lack the privileges to use that!
+    town:
+        description: used to join or accept people into a town
+        usage: /town <join|accept> <townName|playerName>
+        permission: TSKKingdom.town
+        permission-message: You lack the privileges to use that!
+permissions:
+    TSKKingdom.*:
+        description: access to all TSKKingdom permissions
+        children:
+            TSKKingdom.claim: true
+            TSKKingdom.kingdom: true
+            TSKKingdom.plot: true
+            TSKKingdom.town: true
+    TSKKingdom.claim:
+        description: access to creating and expanding towns
+        default: true
+    TSKKingdom.kingdom:
+        description: access to joining kingdoms
+        default: true
+    TSKKingdom.plot:
+        description: access to buying and selling plots
+        default: true
+    TSKKingdom.town:
+        description: access to joining towns
+        default: true
