@@ -22,20 +22,20 @@ public class Plot {
      */
     Plot(String name, String town, KCuboid area) {
         this.name = name;
+        this.town = town;
         owner = TSKKingdom.getTown(town).mayor;
         this.value = -1;
         cuboid = area;
 
-        TSKKingdom.instance.plots.put(name, this);
+        TSKKingdom.instance.plots.put(name.toLowerCase(), this);
     }
 
     /**
      * Constructor from toString data
      *
-     * @param plugin plugin to get the world through
      * @param data   toString data
      */
-    Plot(Plugin plugin, String data) {
+    Plot(String data) {
         String[] pieces = data.split(",");
         name = pieces[0];
         town = pieces[1];
@@ -76,6 +76,27 @@ public class Plot {
      */
     public String townName() {
         return town;
+    }
+
+    /**
+     * @return the size of the plot
+     */
+    public int size() {
+        return cuboid.area();
+    }
+
+    /**
+     * @return true if the plot is for sale, false otherwise
+     */
+    public boolean forSale() {
+        return value >= 0;
+    }
+
+    /**
+     * @return listing price for the plot or -1 if not for sale
+     */
+    public double listingPrice() {
+        return value;
     }
 
     /**

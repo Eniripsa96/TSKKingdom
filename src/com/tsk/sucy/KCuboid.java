@@ -1,6 +1,7 @@
 package com.tsk.sucy;
 
 import org.bukkit.Location;
+import org.bukkit.World;
 
 /**
  * A cuboid definition for regions
@@ -43,11 +44,11 @@ public class KCuboid {
     /**
      * Constructor from toString data
      *
-     * @param world
-     * @param x
-     * @param z
-     * @param width
-     * @param depth
+     * @param world world name
+     * @param x     x-coordinate position
+     * @param z     z-coordinate position
+     * @param width x-coordinate size
+     * @param depth z-coordinate size
      */
     public KCuboid(String world, String x, String z, String width, String depth) {
         corner = new Location(TSKKingdom.instance.getServer().getWorld(world), Integer.parseInt(x), 0, Integer.parseInt(z));
@@ -110,6 +111,18 @@ public class KCuboid {
         if (cuboid.corner.getX() + cuboid.width < corner.getX()) return false;
         if (cuboid.corner.getZ() + cuboid.depth < corner.getZ()) return false;
         return true;
+    }
+
+    /**
+     * Returns the center of the cuboid as an ordered pair string (x, z)
+     *
+     * @return ordered pair string
+     */
+    public String pairString() {
+        Location center = new Location(corner.getWorld(), corner.getX(), 0, corner.getY());
+        center.setX(center.getX() + width / 2);
+        center.setZ(center.getZ() + depth / 2);
+        return "(" + center.getBlockX() + ", " + center.getBlockZ() + ")";
     }
 
     /**
